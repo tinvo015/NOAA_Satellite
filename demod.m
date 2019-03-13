@@ -25,18 +25,19 @@ for i = 5:4:30
     sync_A(i:(i+1)) = 1;
 end
 
-y1 = y1(2300:end);
+y1 = y1(10000:end);
 
-c = conv(sync_A', y1(1:2080));
+n = polyfit([1:2080]', y1(1:2080), 1);
+x = [1:2080]';
+lin = y1(2080) - n(1)*x;
+
+c = conv(sync_A', y1(1:2080) .* lin);
 c = c(1:2080);
 [max_v, max_i] = max(c);
 
-% imax = mod(max_i, 2080);
-% imax = 2080 - imax;
+
 
 image = [];
-% y1 = y1(max_i:end);
-
 i = max_i;
 j = 1;
 while i < length(y1) - 2100
@@ -47,20 +48,16 @@ while i < length(y1) - 2100
     
 end
 
-%image = uint8(image);
-figure();
-subplot(2, 2, 3);
-plot(c);
-title('cross correlation');
-subplot(2, 2, 2);
-plot(sync_A);
-title('sync A pattern');
-subplot(2, 2, 1);
-plot(y1(1:2080));
-title('one data frame length of recieved signal');
-subplot(2, 2, 4);
-imshow(image);
-
-figure();
-plot(y1);
+%figure();
+% subplot(2, 2, 3);
+% plot(c);
+% title('cross correlation');
+% subplot(2, 2, 2);
+% plot(sync_A);
+% title('sync A pattern');
+% subplot(2, 2, 1);
+% plot(y1(1:2080));
+% title('one data frame length of recieved signal');
+% subplot(2, 2, 4);
+imwrite(image, 'TinNathan_finaltest3.jpg');
     

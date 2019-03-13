@@ -57,4 +57,4 @@ fs = 2.4/16.64;
 
 y = A_final .* cos(2*pi*fs*t);
 y = resample(y, 16000, 16640);
-audiowrite('s1.wav', y, 16000);
+audiowrite('modfinaltest1.wav', y, 16000);
