@@ -1,6 +1,6 @@
 # NOAA_Satellite
 
-These files are used to implement a modulator and demodulator of the weather satellite signals from NOAA.
+Codes for implementing a modulator and demodulator (modem) for NASA's “Automatic Picture Transmission” or APT data format.
 
 ### Modulator
 Accepts a JPEG image of width 909 pixels and height of 1-1818 pixels and produces an fs = 16KHz and nbits = 16  .wav file output that is amplitude modulated with image data in APT format. The image occupies both the "A" and "B" subimages of the APT frame. The APT telemetry data words is all zeros.
